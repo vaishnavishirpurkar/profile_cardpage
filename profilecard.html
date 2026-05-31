@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Profile Cards</title>
+
+<style>
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background: linear-gradient(to right, #0f0f0f, #1a1a1a);
+    min-height: 100vh;
+    padding: 30px;
+    overflow-x: hidden;
+}
+
+.top-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+h1{
+    color: #f7c873;
+    font-size: 40px;
+    text-shadow: 0px 0px 6px rgba(247, 200, 115, 0.8);
+}
+
+.add-profile-btn{
+    border: none;
+    background: linear-gradient(to right, #f7c873, #c6922e);
+    color: black;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0px 0px 15px rgba(247, 200, 115, 0.4);
+}
+
+.add-profile-btn:hover{
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px rgba(247, 200, 115, 0.7);
+}
+
+/* FORM */
+.form-container{
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(247, 200, 115, 0.3);
+    padding: 25px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    display: none;
+}
+
+/* SLIDER */
+.slider-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
+     
+}
+
+.container{
+    display: flex;
+    gap: 40px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    width: 80%;
+    overflow: visible;
+}
+
+/* ✅ SMALLER CARD (fixed only size) */
+.card{
+    min-width: 38%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(247, 200, 115, 0.3);
+    border-radius: 20px;
+    padding: 22px;
+    text-align: center;
+    position: relative;
+
+    /* 🔥 RESTORED ANIMATION */
+    transition: 0.4s ease;
+}
+
+/* 🔥 RESTORED HOVER ANIMATION */
+.card:hover{
+    transform: translateY(-12px);
+    box-shadow:
+    0px 0px 20px rgba(247, 200, 115, 0.5),
+    0px 0px 40px rgba(247, 200, 115, 0.2);
+}
+
+.profile-img{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* smaller image but same style */
+.profile-img img{
+    width: 190px;
+    height: 190px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 4px solid #f7c873;
+    box-shadow:
+    0px 0px 15px rgba(247, 200, 115, 0.6),
+    0px 0px 30px rgba(247, 200, 115, 0.3);
+}
+
+.card-content h2{
+    color: #f7c873;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.course{
+    color: #d6b980;
+    margin-bottom: 10px;
+}
+
+.about{
+    color: #ccc;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.skills span{
+    display: inline-block;
+    padding: 6px 10px;
+    margin: 4px;
+    border-radius: 20px;
+    background: rgba(247,200,115,0.12);
+    color: #f7c873;
+    font-size: 13px;
+}
+
+/* BUTTON ANIMATION RESTORED */
+.btn{
+    border: none;
+    background: linear-gradient(to right, #f7c873, #c6922e);
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover{
+    transform: scale(1.05);
+}
+
+.contact-info{
+    display: none;
+    margin-top: 10px;
+    color: #f5deb3;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="top-section">
+    <h1>Student Profile Cards</h1>
+    <button class="add-profile-btn" onclick="toggleForm()">+ Add Profile</button>
+</div>
+
+<div class="form-container" id="formContainer">
+
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="text" id="course" placeholder="Enter Course">
+    <input type="text" id="skills" placeholder="Enter Skills (comma separated)">
+    <input type="text" id="about" placeholder="Enter About Me">
+    <input type="email" id="email" placeholder="Enter Email">
+    <input type="text" id="phone" placeholder="Enter Phone Number">
+    <input type="file" id="image">
+
+    <button class="btn" onclick="addProfile()">Add Student</button>
+</div>
+
+<div class="slider-container">
+
+    <div class="container" id="cardContainer">
+
+        <!-- CARD -->
+        <div class="card">
+
+            <div class="profile-img">
+                <img src="c:\Users\vaish\OneDrive\UPSC\Documents\Pictures\Desktop\Internship2026\w1task1\profile.jpeg">
+            </div>
+
+            <div class="card-content">
+
+                <h2>Vaishnavi</h2>
+                <p class="course">Frontend Developer</p>
+
+                <p class="about">
+                    Passionate about HTML, CSS and JavaScript UI designing.
+                </p>
+
+                <div class="skills">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                </div>
+
+                <button class="btn" onclick="showContact(this)">Contact</button>
+
+                <div class="contact-info">
+                    📧 email@gmail.com <br>
+                    📞 9876543210
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function showContact(btn){
+    let info = btn.nextElementSibling;
+    info.style.display = info.style.display === "block" ? "none" : "block";
+}
+
+function toggleForm(){
+    let form = document.getElementById("formContainer");
+    form.style.display = form.style.display === "block" ? "none" : "block";
+}
+
+function addProfile(){
+
+    let name = document.getElementById("name").value;
+    let course = document.getElementById("course").value;
+    let skills = document.getElementById("skills").value;
+    let about = document.getElementById("about").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+    let imageInput = document.getElementById("image");
+
+    let img = URL.createObjectURL(imageInput.files[0]);
+
+    let skillHTML = "";
+    skills.split(",").forEach(s=>{
+        skillHTML += `<span>${s}</span>`;
+    });
+
+    document.getElementById("cardContainer").innerHTML += `
+    <div class="card">
+
+        <div class="profile-img">
+            <img src="${img}">
+        </div>
+
+        <div class="card-content">
+
+            <h2>${name}</h2>
+            <p class="course">${course}</p>
+            <p class="about">${about}</p>
+
+            <div class="skills">
+                ${skillHTML}
+            </div>
+
+            <button class="btn" onclick="showContact(this)">Contact</button>
+
+            <div class="contact-info">
+                📧 ${email} <br>
+                📞 ${phone}
+            </div>
+
+        </div>
+
+    </div>
+    `;
+
+    document.getElementById("formContainer").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
